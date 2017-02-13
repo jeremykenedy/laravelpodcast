@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\Podcast\App\Console;
+namespace jeremykenedy\Laravelpodcast\App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'jeremykenedy\Podcast\App\Console\Commands\UpdatePodcastItems',
+        'jeremykenedy\Laravelpodcast\App\Console\Commands\UpdatePodcastItems',
     ];
 
     /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace jeremykenedy\Podcast\App\Console\Commands;
+namespace jeremykenedy\Laravelpodcast\App\Console\Commands;
 
-use jeremykenedy\Podcast\App\Models\PodcastItem;
-use jeremykenedy\Podcast\App\Models\Podcast;
+use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
+use jeremykenedy\Laravelpodcast\App\Models\Podcast;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 use Feeds;

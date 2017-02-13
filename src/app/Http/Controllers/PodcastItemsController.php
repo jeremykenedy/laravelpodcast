@@ -1,8 +1,8 @@
 <?php
 
-namespace jeremykenedy\Podcast\App\Http\Controllers;
+namespace jeremykenedy\Laravelpodcast\App\Http\Controllers;
 
-use jeremykenedy\Podcast\App\Models\PodcastItem;
+use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\Podcast\App\Models;
+namespace jeremykenedy\Laravelpodcast\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;

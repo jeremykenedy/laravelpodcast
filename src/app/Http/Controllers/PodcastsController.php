@@ -1,9 +1,9 @@
 <?php
 
-namespace jeremykenedy\Podcast\App\Http\Controllers;
+namespace jeremykenedy\Laravelpodcast\App\Http\Controllers;
 
-use jeremykenedy\Podcast\App\Models\PodcastItem;
-use jeremykenedy\Podcast\App\Models\Podcast;
+use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
+use jeremykenedy\Laravelpodcast\App\Models\Podcast;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;

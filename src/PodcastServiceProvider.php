@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\Podcast;
+namespace jeremykenedy\Laravelpodcast;
 
 use Illuminate\Support\ServiceProvider;
 
