@@ -1,5 +1,5 @@
 {
-    "name": "jeremykenedy/laravel-podcast-manager",
+    "name": "jeremykenedy/LaravelPodcastManager",
     "description": "Laravel podcast manager package",
     "keywords": ["laravel", "podcast"],
     "license": "MIT",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "jeremykenedy\\Podcast\\": "src/"
+            "jeremykenedy\\LaravelPodcastManager\\": "src/"
         }
     },
     "extra": {
