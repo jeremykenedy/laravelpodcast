@@ -1,8 +1,8 @@
-# LaravelPodcastManager | A Laravel podcast manager package - v0.0.1
+# laravelpodcast | A Laravel podcast manager package - v0.0.1
 
-[![Total Downloads](https://poser.pugx.org/jeremykenedy/LaravelPodcastManager/d/total.svg)](https://packagist.org/packages/jeremykenedy/LaravelPodcastManager)
-[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/LaravelPodcastManager/v/stable.svg)](https://packagist.org/packages/jeremykenedy/LaravelPodcastManager)
-[![License](https://poser.pugx.org/jeremykenedy/LaravelPodcastManager/license.svg)](https://packagist.org/packages/jeremykenedy/LaravelPodcastManager)
+[![Total Downloads](https://poser.pugx.org/jeremykenedy/laravelpodcast/d/total.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
+[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravelpodcast/v/stable.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
+[![License](https://poser.pugx.org/jeremykenedy/laravelpodcast/license.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
 
 ## Introduction
 
@@ -13,13 +13,13 @@ This is a base example of a laravel package. The focus is on the framework of th
 1. From your projects root folder in terminal run:
 
    ```
-      composer require jeremykenedy/LaravelPodcastManager
+      composer require jeremykenedy/laravelpodcast
    ```
 
 2. Register the package with laravel in `config/app.php` under the **Application Service Providers** section with the following:
 
    ```
-      jeremykenedy\LaravelPodcastManager\PodcastServiceProvider::class,
+      jeremykenedy\laravelpodcast\PodcastServiceProvider::class,
    ```
 
 3. (Optional) Publish the packages assets/views to be customized by running the following from your projects root folder:
@@ -42,7 +42,7 @@ This is a base example of a laravel package. The focus is on the framework of th
 
 ## License
 
-LaravelPodcastManager - A Laravel package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+laravelpodcast - A Laravel package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 
 
@@ -52,7 +52,7 @@ Other Dependencies to `app.php`, add to `providers` array:
    Collective\Html\HtmlServiceProvider::class,
    willvincent\Feeds\FeedsServiceProvider::class,
    Intervention\Image\ImageServiceProvider::class,
-   jeremykenedy\LaravelPodcastManager\PodcastServiceProvider::class,
+   jeremykenedy\laravelpodcast\PodcastServiceProvider::class,
 ```
 
 Other Dependencies to `app.php`, add to `aliases` array:
