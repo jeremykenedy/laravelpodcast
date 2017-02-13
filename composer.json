@@ -1,0 +1,30 @@
+{
+    "name": "jeremykenedy/laravel-podcast-manager",
+    "description": "Laravel podcast manager package",
+    "keywords": ["laravel", "podcast"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jeremykenedy",
+            "email": "jeremykenedy@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravelcollective/html": "^5.3.0",
+        "willvincent/feeds": "^1.1",
+        "intervention/image": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "jeremykenedy\\Podcast\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
