@@ -1,8 +1,8 @@
-# Lara-Podcast | A Laravel podcast manager package - v0.0.1
+# Laravel-Podcast-Manager | A Laravel podcast manager package - v0.0.1
 
-[![Total Downloads](https://poser.pugx.org/jeremykenedy/lara-podcast/d/total.svg)](https://packagist.org/packages/jeremykenedy/lara-podcast)
-[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/lara-podcast/v/stable.svg)](https://packagist.org/packages/jeremykenedy/lara-podcast)
-[![License](https://poser.pugx.org/jeremykenedy/lara-podcast/license.svg)](https://packagist.org/packages/jeremykenedy/lara-podcast)
+[![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-podcast-manager/d/total.svg)](https://packagist.org/packages/jeremykenedy/laravel-podcast-manager)
+[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-podcast-manager/v/stable.svg)](https://packagist.org/packages/jeremykenedy/laravel-podcast-manager)
+[![License](https://poser.pugx.org/jeremykenedy/laravel-podcast-manager/license.svg)](https://packagist.org/packages/jeremykenedy/laravel-podcast-manager)
 
 ## Introduction
 
@@ -13,7 +13,7 @@ This is a base example of a laravel package. The focus is on the framework of th
 1. From your projects root folder in terminal run:
 
    ```
-      composer require jeremykenedy/lara-podcast
+      composer require jeremykenedy/laravel-podcast-manager
    ```
 
 2. Register the package with laravel in `config/app.php` under the **Application Service Providers** section with the following:
