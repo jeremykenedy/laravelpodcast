@@ -63,5 +63,3 @@ Other Dependencies to `app.php`, add to `aliases` array:
    'Feeds'    => willvincent\Feeds\Facades\FeedsFacade::class,
    'Image' => Intervention\Image\Facades\Image::class
 ```
-
-
