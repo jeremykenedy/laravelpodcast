@@ -19,14 +19,6 @@ class PodcastServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views/', 'laravelpodcast');
 
         $this->publishes([
-            __DIR__.'/database/migrations' => base_path('database/migrations'),
-        ], 'podcastmigrations');
-
-        $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/laravelpodcast'),
-        ], 'podcastviews');
-
-        $this->publishes([
             __DIR__.'/public/css' => public_path('vendor/laravelpodcast'),
         ], 'podcast');
 
