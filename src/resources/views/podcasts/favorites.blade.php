@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('laravelpodcast::layouts.app')
 
 @section('template_title')
   Favorites
@@ -10,7 +10,7 @@
 
 @section('content')
   @if($podcastItems)
-    @include('podcasts.player')
+    @include('laravelpodcast::podcasts.player')
   @endif
   <div class="main container container-podcast-list favorites">
     <div class="row">
@@ -26,12 +26,12 @@
         @if($podcastItems)
 
           @foreach ($podcastItems as $item)
-            @include('podcasts.item')
+            @include('laravelpodcast::podcasts.item')
           @endforeach
 
           {{ $podcastItems->render() }}
 
-      	@endif
+        @endif
 
         @if (count($podcastItems) === 0)
             <p>You have not favorited any podcasts</p>
@@ -42,5 +42,5 @@
 @endsection
 
 @section('footer-scripts')
-  @include('scripts.podcast-scripts')
+  @include('laravelpodcast::scripts.podcast-scripts')
 @endsection

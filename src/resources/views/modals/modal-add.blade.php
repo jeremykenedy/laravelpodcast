@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Add a new podcast feed</h4>
             </div>
-            {!! Form::model($podcast = new \App\Podcast, ['method' =>'POST','action' => ['PodcastsController@store']]) !!}
+            {!! Form::model($podcast = new \jeremykenedy\laravelpodcast\App\Models\Podcast, ['method' =>'POST','action' => ['\jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController@store']]) !!}
                 <div class="modal-body">
                     <div class="form-group">
                         {{ Form::label('feed_url', 'Enter the Podcast Feed Url') }}

@@ -1,6 +1,6 @@
 <div class="row podcast-item-row">
   <div class="col-sm-3 podcast-thumbnail-container">
-    <img class="podcast-thumbnail" width="100" height="100" src="{{asset(App\PodcastItem::find($item->id)->podcast->feed_thumbnail_location)}}" alt="{{App\PodcastItem::find($item->id)->podcast->name}}"/>
+
     <p>
       <small>
         {{ date_format(date_create($item->published_at),'jS M Y') }}
@@ -10,7 +10,7 @@
   <div class="col-sm-9">
     <h4 class="podcast-title">
       <small>
-        {{App\PodcastItem::find($item->id)->podcast->name}}
+
       </small>
     </h4>
     <h3 class="podcast-item-title">
@@ -67,5 +67,3 @@
   </div>
 </div>
 
-@include('modals.modal-markRead')
-@include('modals.modal-markAllRead')

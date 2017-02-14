@@ -23,7 +23,7 @@
       <div class="col-md-8 col-md-offset-2">
         @if($podcast_items)
           @foreach ($podcast_items as $item)
-            @include('podcasts.item')
+            @include('laravelpodcast::podcasts.item')
           @endforeach
           <div class="row container-fluid">
             {{ $podcast_items->render() }}
