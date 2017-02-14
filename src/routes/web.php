@@ -14,7 +14,7 @@
 // APP Routes Below
 Route::group(['middleware' => 'web'], function () {
 
-	Route::get('/', 'jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController@index');
+	//Route::get('/', 'jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController@index');
 
 	Route::get('/podcast', 'jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController@index');
 	Route::get('/podcasts/player', 'jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController@index');
