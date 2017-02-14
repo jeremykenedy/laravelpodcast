@@ -1,21 +1,14 @@
-@extends('layouts.app')
+@extends('laravelpodcast::layouts.app')
 
 @section('template_title')
   Listen
 @endsection
 
 @section('content')
+
   @if($podcast_items)
-    @include('podcasts.player')
+    @include('laravelpodcast::podcasts.player')
   @endif
-
-
-
-
-APP_ENV
-
-
-
 
   <div class="container container-podcast-list">
     <div class="row">
@@ -39,8 +32,11 @@ APP_ENV
       </div>
     </div>
   </div>
+
 @endsection
 
 @section('footer-scripts')
-  @include('scripts.podcast-scripts')
+
+  @include('laravelpodcast::scripts.podcast-scripts')
+
 @endsection

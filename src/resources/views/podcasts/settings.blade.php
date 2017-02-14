@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('laravelpodcast::layouts.app')
 
 @section('template_title')
   Settings

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('laravelpodcast::layouts.app')
 
 @section('template_title')
   Manage Podcasts
@@ -27,7 +27,7 @@
                     Manage Podcast Feeds
                 </h3>
                 <hr/>
-                @include('partials.form-status')
+                @include('laravelpodcast::partials.form-status')
             </div>
         </div>
         <div class="row">
@@ -62,12 +62,12 @@
         </div>
     </div>
 
-    @include('modals.modal-add')
-    @include('modals.modal-delete')
+    @include('laravelpodcast::modals.modal-add')
+    @include('laravelpodcast::modals.modal-delete')
 
 @endsection
 
 @section('footer-scripts')
-    @include('scripts.delete-modal-script')
-    @include('scripts.add-modal-script')
+    @include('laravelpodcast::scripts.delete-modal-script')
+    @include('laravelpodcast::scripts.add-modal-script')
 @endsection

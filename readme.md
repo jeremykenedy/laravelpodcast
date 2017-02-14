@@ -25,7 +25,7 @@ This is a base example of a laravel package. The focus is on the framework of th
 3. (Optional) Publish the packages assets/views to be customized by running the following from your projects root folder:
 
    ```
-      php artisan publish
+      php artisan vendor:publish --tag=podcast
    ```
 
 ## Usage

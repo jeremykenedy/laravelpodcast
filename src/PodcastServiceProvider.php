@@ -13,36 +13,22 @@ class PodcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'podcast');
 
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadViewsFrom(__DIR__.'/resources/views/', 'laravelpodcast');
 
         $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/podcast'),
-            //__DIR__.'app/Controllers' => base_path('app/Http/Controllers/Podcast'),
-            //__DIR__.'app/Models' => base_path('app/'),
-            //__DIR__.'/routes' => base_path('/routes'),
-        ]);
-
-        // $this->publishes([
-        //     __DIR__.'/path/to/views' => resource_path('views/vendor/courier'),
-        // ]);
-
-        // $this->publishes([
-        //     __DIR__.'/path/to/assets' => public_path('vendor/jeremykenedy'),
-        // ], 'public');
+            __DIR__.'/database/migrations' => base_path('database/migrations'),
+        ], 'podcastmigrations');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations')
-        ], 'migrations');
+            __DIR__.'/resources/views' => base_path('resources/views/laravelpodcast'),
+        ], 'podcastviews');
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                UpdatePodcastItems::class,
-            ]);
-        }
+        $this->publishes([
+            __DIR__.'/public/css' => public_path('vendor/laravelpodcast'),
+        ], 'podcast');
 
     }
 
@@ -54,7 +40,7 @@ class PodcastServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__.'/routes/web.php';
-        $this->app->make('jeremykenedy\Podcast\app\Http\Controllers\PodcastsController');
-        $this->app->make('jeremykenedy\Podcast\app\Http\Controllers\PodcastsItemsController');
+        $this->app->make('jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastsController');
+        $this->app->make('jeremykenedy\laravelpodcast\app\Http\Controllers\PodcastItemsController');
     }
 }

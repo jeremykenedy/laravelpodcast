@@ -129,7 +129,7 @@ class PodcastItemsController extends Controller
             ->orWhere('description', 'LIKE', "%$query%")
             ->get();
 
-        return view('podcasts.searchresults')->with([
+        return view('laravelpodcast::podcasts.searchresults')->with([
             'items' => $items,
             'query' => $query,
         ]);

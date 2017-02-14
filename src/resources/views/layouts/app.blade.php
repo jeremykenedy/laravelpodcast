@@ -12,7 +12,7 @@
 
         {{-- Styles --}}
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{asset("vendor/jeremykenedy/app.css")}}">
 
         @yield('header-style')
 
@@ -26,7 +26,7 @@
     <body class="@if (trim($__env->yieldContent('template_body_classes')))@yield('template_body_classes')@endif">
         <div id="app">
 
-            @include('partials.nav')
+            @include('laravelpodcast::partials.nav')
             @yield('content')
 
         </div>

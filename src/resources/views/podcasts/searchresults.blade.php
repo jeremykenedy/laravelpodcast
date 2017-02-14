@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('laravelpodcast::layouts.app')
 
 @section('template_title')
   Search Results
@@ -6,11 +6,11 @@
 
 @section('content')
 
-	@if($items)
-    @include('podcasts.player')
-	@endif
+  @if($items)
+    @include('laravelpodcast::podcasts.player')
+  @endif
 
-	<div class="container container-podcast-list">
+  <div class="container container-podcast-list">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <h3 class="page-title">
@@ -22,10 +22,10 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         @if($items)
-        	@foreach ($items as $item)
-            @include('podcasts.item')
-        	@endforeach
-      	@endif
+          @foreach ($items as $item)
+            @include('laravelpodcast::podcasts.item')
+          @endforeach
+        @endif
       </div>
     </div>
   </div>
@@ -33,5 +33,5 @@
 @endsection
 
 @section('footer-scripts')
-  @include('scripts.podcast-scripts')
+  @include('laravelpodcast::scripts.podcast-scripts')
 @endsection

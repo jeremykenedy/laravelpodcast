@@ -1,20 +1,22 @@
 <?php
 
-namespace jeremykenedy\Laravelpodcast\App\Http\Controllers;
+namespace jeremykenedy\laravelpodcast\App\Http\Controllers;
 
-use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
-use jeremykenedy\Laravelpodcast\App\Models\Podcast;
+use jeremykenedy\laravelpodcast\App\Models\PodcastItem;
+use jeremykenedy\laravelpodcast\App\Models\Podcast;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Http\File;
+use Validator;
+use File;
 use Auth;
 use Feeds;
 use Image;
 
 class PodcastsController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -24,6 +26,7 @@ class PodcastsController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Show the application dashboard.
      *
@@ -49,7 +52,7 @@ class PodcastsController extends Controller
             'user'              => $user,
         );
 
-        return view('podcasts.list', $data);
+        return view('laravelpodcast::podcasts.list', $data);
 
     }
 
@@ -72,7 +75,7 @@ class PodcastsController extends Controller
             'user'              => $user,
         );
 
-        return view('podcasts.list', $data);
+        return view('laravelpodcast::podcasts.list', $data);
 
     }
 
@@ -93,7 +96,7 @@ class PodcastsController extends Controller
             'user'              => $user,
         );
 
-        return view('podcasts.manage', $data);
+        return view('laravelpodcast::podcasts.manage', $data);
 
     }
 
@@ -111,7 +114,7 @@ class PodcastsController extends Controller
             'podcastItems' => $podcastItems,
         );
 
-        return view('podcasts.favorites', $data);
+        return view('laravelpodcast::podcasts.favorites', $data);
     }
 
     /**
@@ -119,7 +122,7 @@ class PodcastsController extends Controller
      * @return view
      */
     public function settings() {
-        return view('podcasts.settings');
+        return view('laravelpodcast::podcasts.settings');
     }
 
     /**
@@ -131,10 +134,14 @@ class PodcastsController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate($request, [
+            'feed_url' => 'required|unique:podcasts',
+        ]);
+
         // create "images" directory under "public" directory if it doesn't exist
-        // if (!File::exists(public_path() . '/images')) {
-        //     File::makeDirectory(public_path() . '/images');
-        // }
+        if (!File::exists(public_path() . '/images')) {
+            File::makeDirectory(public_path() . '/images');
+        }
 
         $user = Auth::user();
 
@@ -177,20 +184,23 @@ class PodcastsController extends Controller
                         ]);
                     }
 
-                    // @todo Podcast was added
-                    return redirect('podcasts/player');
+                    return back()->with('success', 'Successfully added the Podcast!');
+
                 } else {
-                    // @todo flash msg
-                    return 'This doesn\'t seem to be an RSS feed with audio files. Please try another feed.';
+
+                    return back()->with('message', 'This doesn\'t seem to be an RSS feed with audio files. Please try another feed.');
+
                 }
             } else {
-                // @todo Could not add podcast
-                return 'Sorry, this feed cannot be imported. Please try another feed';
+
+                return back()->with('error', 'Sorry, this feed cannot be imported. Please try another feed.');
+
             }
 
         } else {
-            // @todo use validation
-            return 'Invalid feed URL given.';
+
+            return back()->with('error', 'Invalid feed URL given.');
+
         }
     }
 
