@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePodcastItemsTable extends Migration
 {
@@ -13,8 +13,7 @@ class CreatePodcastItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('podcast_items', function(Blueprint $table)
-        {
+        Schema::create('podcast_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->longText('title');

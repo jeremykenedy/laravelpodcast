@@ -2,29 +2,31 @@
 
 namespace jeremykenedy\Laravelpodcast\App\Http\Controllers;
 
-use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
 
 class PodcastItemsController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
     /**
-     * [markAsRead mark a podcast item as read]
+     * [markAsRead mark a podcast item as read].
+     *
      * @return array
      */
-    public function markAsRead(Request $request) {
+    public function markAsRead(Request $request)
+    {
         $result['status'] = 0;
         $result['message'] = 'Something went wrong, please try again';
 
@@ -43,14 +45,17 @@ class PodcastItemsController extends Controller
             $result['status'] = 1;
             $result['message'] = 'Marked as read';
         }
+
         return $result;
     }
 
     /**
-     * [markAllPrevAsRead mark all previous item in a podcast as read]
+     * [markAllPrevAsRead mark all previous item in a podcast as read].
+     *
      * @return array
      */
-    public function markAllPrevAsRead(Request $request) {
+    public function markAllPrevAsRead(Request $request)
+    {
         $result['status'] = 0;
         $result['message'] = 'Something went wrong, please try again';
 
@@ -85,15 +90,17 @@ class PodcastItemsController extends Controller
             $result['data'] = $podcastItemIds;
             $result['message'] = 'Previous items in this podcast has been marked as read';
         }
+
         return $result;
     }
 
     /**
-     * [markAsFavorite mark a podcast item as favorite]
+     * [markAsFavorite mark a podcast item as favorite].
+     *
      * @return array
      */
-    public function markAsFavorite(Request $request) {
-
+    public function markAsFavorite(Request $request)
+    {
         $result['status'] = 0;
         $result['message'] = 'Something went wrong, please try again';
 
@@ -114,15 +121,15 @@ class PodcastItemsController extends Controller
             $result['status'] = 1;
             $result['message'] = 'Favorite Updated';
         }
+
         return $result;
     }
 
     /**
-     * Return a view to display item search results for a given query
+     * Return a view to display item search results for a given query.
      */
-
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $query = trim(strip_tags($request->query('query')));
         $items = DB::table('podcast_items')
             ->where('title', 'LIKE', "%$query%")
@@ -134,5 +141,4 @@ class PodcastItemsController extends Controller
             'query' => $query,
         ]);
     }
-
 }

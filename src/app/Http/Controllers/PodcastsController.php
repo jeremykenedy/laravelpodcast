@@ -2,21 +2,18 @@
 
 namespace jeremykenedy\laravelpodcast\App\Http\Controllers;
 
-use jeremykenedy\laravelpodcast\App\Models\PodcastItem;
-use jeremykenedy\laravelpodcast\App\Models\Podcast;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Validator;
-use File;
 use Auth;
 use Feeds;
+use File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Image;
+use jeremykenedy\laravelpodcast\App\Models\Podcast;
+use jeremykenedy\laravelpodcast\App\Models\PodcastItem;
 
 class PodcastsController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -32,9 +29,8 @@ class PodcastsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function show($id) {
-
+    public function show($id)
+    {
         $user = Auth::user();
 
         $podcast_items = DB::table('podcast_items')
@@ -46,18 +42,17 @@ class PodcastsController extends Controller
             ->where('user_id', '=', $user->id)
             ->get();
 
-        $data = array(
+        $data = [
             'podcasts'          => $podcasts,
             'podcast_items'     => $podcast_items,
             'user'              => $user,
-        );
+        ];
 
         return view('laravelpodcast::podcasts.list', $data);
-
     }
 
-    public function index() {
-
+    public function index()
+    {
         $user = Auth::user();
 
         $podcast_items = DB::table('podcast_items')
@@ -69,84 +64,86 @@ class PodcastsController extends Controller
             ->where('user_id', '=', $user->id)
             ->get();
 
-        $data = array(
+        $data = [
             'podcasts'          => $podcasts,
             'podcast_items'     => $podcast_items,
             'user'              => $user,
-        );
+        ];
 
         return view('laravelpodcast::podcasts.list', $data);
-
     }
 
     /**
-     * Return a view to manage podcasts
+     * Return a view to manage podcasts.
+     *
      * @return view
      */
-    public function manage() {
-
+    public function manage()
+    {
         $user = Auth::user();
 
         $podcasts = DB::table('podcasts')
             ->where('user_id', '=', $user->id)
             ->get();
 
-        $data = array(
+        $data = [
             'podcasts'          => $podcasts,
             'user'              => $user,
-        );
+        ];
 
         return view('laravelpodcast::podcasts.manage', $data);
-
     }
 
     /**
-     * Return the list of favorites for a user to a view
+     * Return the list of favorites for a user to a view.
+     *
      * @return [type] [description]
      */
-    public function favorites() {
+    public function favorites()
+    {
         $podcastItems = DB::table('podcast_items')
             ->where('user_id', '=', Auth::user()->id)
             ->where('is_mark_as_favorite', '!=', 0)
             ->orderBy('published_at', 'desc')->paginate(15);
 
-        $data = array(
+        $data = [
             'podcastItems' => $podcastItems,
-        );
+        ];
 
         return view('laravelpodcast::podcasts.favorites', $data);
     }
 
     /**
-     * Return a view to manage settings
+     * Return a view to manage settings.
+     *
      * @return view
      */
-    public function settings() {
+    public function settings()
+    {
         return view('laravelpodcast::podcasts.settings');
     }
 
     /**
      * Store a newly created podcast in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'feed_url' => 'required|unique:podcasts',
         ]);
 
         // create "images" directory under "public" directory if it doesn't exist
-        if (!File::exists(public_path() . '/images')) {
-            File::makeDirectory(public_path() . '/images');
+        if (!File::exists(public_path().'/images')) {
+            File::makeDirectory(public_path().'/images');
         }
 
         $user = Auth::user();
 
         if ($request->feed_url) {
-
             $feed = Feeds::make($request->feed_url);
             $feed->force_feed(true);
             $feed->handle_content_type();
@@ -159,15 +156,15 @@ class PodcastsController extends Controller
 
                     // Save the feed thumbnail to file system and save file path to database
                     $img = Image::make($feed->get_image_url())->resize(100, 100);
-                    $img->save(public_path('images/' . $podcastMachineName . '.png'));
+                    $img->save(public_path('images/'.$podcastMachineName.'.png'));
 
                     Podcast::create([
-                        'name' => $podcastName ? $podcastName : '',
-                        'machine_name' => $podcastMachineName,
-                        'feed_url' => $request->feed_url,
-                        'feed_thumbnail_location' => 'images/' . $podcastMachineName . '.png',
-                        'user_id' => $user->id,
-                        'web_url' => $feed->get_link(),
+                        'name'                    => $podcastName ? $podcastName : '',
+                        'machine_name'            => $podcastMachineName,
+                        'feed_url'                => $request->feed_url,
+                        'feed_thumbnail_location' => 'images/'.$podcastMachineName.'.png',
+                        'user_id'                 => $user->id,
+                        'web_url'                 => $feed->get_link(),
                     ]);
 
                     foreach ($feed->get_items() as $item) {
@@ -175,32 +172,24 @@ class PodcastsController extends Controller
                             'podcast_id' => DB::table('podcasts')
                                 ->select('id', 'machine_name')
                                 ->where('machine_name', '=', $podcastMachineName)->first()->id,
-                            'user_id' => $user->id,
-                            'url' => $item->get_permalink(),
-                            'audio_url' => $item->get_enclosure()->get_link(),
-                            'title' => $item->get_title(),
-                            'description' => trim(strip_tags(str_limit($item->get_description(), 200))),
+                            'user_id'      => $user->id,
+                            'url'          => $item->get_permalink(),
+                            'audio_url'    => $item->get_enclosure()->get_link(),
+                            'title'        => $item->get_title(),
+                            'description'  => trim(strip_tags(str_limit($item->get_description(), 200))),
                             'published_at' => $item->get_date('Y-m-d H:i:s'),
                         ]);
                     }
 
                     return back()->with('success', 'Successfully added the Podcast!');
-
                 } else {
-
                     return back()->with('message', 'This doesn\'t seem to be an RSS feed with audio files. Please try another feed.');
-
                 }
             } else {
-
                 return back()->with('error', 'Sorry, this feed cannot be imported. Please try another feed.');
-
             }
-
         } else {
-
             return back()->with('error', 'Invalid feed URL given.');
-
         }
     }
 
@@ -218,8 +207,9 @@ class PodcastsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -228,18 +218,16 @@ class PodcastsController extends Controller
     }
 
     /**
-     * Delete a podcast
+     * Delete a podcast.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-
         Podcast::findOrFail($id)->delete();
 
         return back()->with('success', 'Successfully deleted the Podcast!');
-
     }
-
 }
