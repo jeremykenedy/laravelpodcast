@@ -1,6 +1,7 @@
 # laravelpodcast | A Laravel podcast manager package - v0.0.8
 
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravelpodcast/d/total.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
+[![StyleCI](https://github.styleci.io/repos/81772813/shield?branch=master)](https://github.styleci.io/repos/81772813)
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravelpodcast/v/stable.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
 [![License](https://poser.pugx.org/jeremykenedy/laravelpodcast/license.svg)](https://packagist.org/packages/jeremykenedy/laravelpodcast)
 
