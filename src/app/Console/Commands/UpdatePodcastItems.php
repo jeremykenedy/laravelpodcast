@@ -2,13 +2,14 @@
 
 namespace jeremykenedy\Laravelpodcast\App\Console\Commands;
 
-use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
-use jeremykenedy\Laravelpodcast\App\Models\Podcast;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Console\Command;
 use Feeds;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use jeremykenedy\Laravelpodcast\App\Models\Podcast;
+use jeremykenedy\Laravelpodcast\App\Models\PodcastItem;
 
-class UpdatePodcastItems extends Command {
+class UpdatePodcastItems extends Command
+{
     /**
      * The console command name.
      *
@@ -34,12 +35,12 @@ class UpdatePodcastItems extends Command {
     }
 
     /**
-     * Update podcast items
+     * Update podcast items.
      *
      * @return mixed
      */
-    public function handle() {
-
+    public function handle()
+    {
         $uniquePodcasts = DB::table('podcasts')
             ->select('id', 'feed_url', 'machine_name')
             ->groupBy('id')->get();
@@ -62,7 +63,6 @@ class UpdatePodcastItems extends Command {
 
                     // new items
                     foreach ($usersSubscribedToThisPodcast as $subscriber) {
-
                         $podcastItemsCount = DB::table('podcast_items')
                             ->select('user_id', 'title', 'podcast_id')
                             ->where('title', '=', strip_tags($item->get_title()))
@@ -73,13 +73,13 @@ class UpdatePodcastItems extends Command {
                         // if this item is not already in the DB
                         if ($podcastItemsCount == 0) {
                             PodcastItem::create([
-                                'user_id' => $subscriber->user_id,
-                                'title' => strip_tags($item->get_title()),
-                                'description' => strip_tags(str_limit($item->get_description(), 100)),
+                                'user_id'      => $subscriber->user_id,
+                                'title'        => strip_tags($item->get_title()),
+                                'description'  => strip_tags(str_limit($item->get_description(), 100)),
                                 'published_at' => $item->get_date('Y-m-d'),
-                                'url' => $item->get_permalink(),
-                                'audio_url' => $item->get_enclosure()->get_link(),
-                                'podcast_id' => $subscriber->podcast_id,
+                                'url'          => $item->get_permalink(),
+                                'audio_url'    => $item->get_enclosure()->get_link(),
+                                'podcast_id'   => $subscriber->podcast_id,
                             ]);
                         }
                     }
@@ -87,8 +87,6 @@ class UpdatePodcastItems extends Command {
                     break;
                 }
             }
-
         }
-
     }
 }

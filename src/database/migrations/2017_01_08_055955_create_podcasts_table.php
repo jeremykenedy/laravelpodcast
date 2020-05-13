@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePodcastsTable extends Migration
 {
@@ -13,8 +13,7 @@ class CreatePodcastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('podcasts', function(Blueprint $table)
-        {
+        Schema::create('podcasts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('machine_name');
@@ -23,10 +22,9 @@ class CreatePodcastsTable extends Migration
             $table->string('feed_thumbnail_location')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unique(['name','machine_name','user_id']);
+            $table->unique(['name', 'machine_name', 'user_id']);
             $table->timestamps();
         });
-
     }
 
     /**
